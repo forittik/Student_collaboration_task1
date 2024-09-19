@@ -29,7 +29,7 @@ Generate a detailed summary of the strengths, opportunities, and challenges for 
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("/content/task1.csv")
+    return pd.read_csv("https://github.com/forittik/Student_collaboration_task1/blob/main/task1.csv")
 
 def get_student_data(name, df):
     student_data = df[df["Name"] == name]
