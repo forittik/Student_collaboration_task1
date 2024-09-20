@@ -24,23 +24,25 @@ Here is the data for the students:
 
 {context}
 
-Generate a detailed summary of the strengths, opportunities, and challenges for these students. Provide specific insights for each student, and compare their strengths and areas for improvement. Suggest ways they can learn from each other and address their challenges collaboratively where applicable.
+Generate a detailed summary of the strengths, opportunities, and challenges for these students.
+Provide specific insights for each student, and compare their strengths and areas for improvement.
+Suggest ways they can learn from each other and address their challenges collaboratively where applicable.
 """)
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("https://raw.githubusercontent.com/forittik/Student_collaboration_task1/refs/heads/main/task1_copy.csv")
+    return pd.read_excel("/content/TestFeatureChintamani.xlsx")
 
 def get_student_data(name, df):
-    student_data = df[df["Name"] == name]
+    student_data = df[df.iloc[:, 0] == name]
     if student_data.empty:
         return None
     return student_data
 
 def generate_single_student_summary(student_data):
     context = student_data.to_string(index=False)
-    summary_chain = summary_prompt_single | llm | StrOutputParser()
-    summary = summary_chain.invoke({"context": context})
+    summary_chain = summary_prompt_single | llm | StrOutputParser() #The LLM’s output is often complex (such as JSON-like structures or dictionaries), but the StrOutputParser() simplifies it to just the string (text) portion that you want.
+    summary = summary_chain.invoke({"context": context}) #This calls (or "invokes") the summary_chain with a dictionary {"context": context} as the input.
     return summary
 
 def generate_multiple_students_summary(student_data):
@@ -63,7 +65,7 @@ def process_students(names, df):
 
 st.title("B2B Dashboard")
 df = load_data()
-student_names = df['Name'].unique().tolist()
+student_names = df.iloc[:, 0].unique().tolist()
 selected_names = st.multiselect("Select student(s) to generate analyze:", student_names)
 
 if st.button("Analyze student data"):
