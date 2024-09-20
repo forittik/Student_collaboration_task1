@@ -31,7 +31,7 @@ Suggest ways they can learn from each other and address their challenges collabo
 
 @st.cache_data
 def load_data():
-    return pd.read_excel("/content/TestFeatureChintamani.xlsx")
+    return pd.read_excel("https://github.com/forittik/Student_collaboration_task1/blob/main/TestFeatureChintamani.xlsx")
 
 def get_student_data(name, df):
     student_data = df[df.iloc[:, 0] == name]
