@@ -8,7 +8,7 @@ import os
 load_dotenv()
 groq_api_key = os.environ.get("GROQ_API_KEY")
 
-llm = ChatGroq(temperature=0, model_name="gemma2-9b-it", api_key=groq_api_key)
+llm = ChatGroq(temperature=0, model_name="llama3-70b-8192", api_key=groq_api_key)
 
 summary_prompt_single = PromptTemplate.from_template("""
 Here is the data for the student:
