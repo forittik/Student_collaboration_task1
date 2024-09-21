@@ -43,7 +43,7 @@ Suggest ways they can learn from each other and address their challenges collabo
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("/content/merged_3dataset.csv")
+    return pd.read_csv("https://raw.githubusercontent.com/forittik/Student_collaboration_task1/refs/heads/main/merged_3dataset.csv")
 
 def get_student_data(name, df):
     student_data = df[df.iloc[:, 0] == name]
