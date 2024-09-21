@@ -45,26 +45,11 @@ Suggest ways they can learn from each other and address their challenges collabo
 
 @st.cache_data
 def load_data():
-    # Load the data from the provided string instead of a CSV file
-    data = """6o0p8Zwg3AbvEf14PW34q7ByhHX2,SOME BASIC CONCEPTS IN CHEMISTRY,5,REDOX REACTIONS AND ELECTROCHEMISTRY,3,"Sets, Relation and Functions",12,Trigonometry,4,,,,,,,
-71aeV1qFeLb76liBxvsZlQZQUDv2,CHEMICAL THERMODYNAMICS,-5,,,,,,,,,,,,,
-BoSgUNVn14XmlodWvZKU4WTH6mG2,CURRENT ELECTRICITY,15,CURRENT ELECTRICITY,12,,,,,,,,,,,
-HHaWnWY9XvU7epshxrNLWIWBI0C3,,,,,,,,,,,,,Yes,2,
-HPbnaEfnNBWDApP3aDyXfQel8y53,,,,,,,,,,,,,Yes,10,EMOTIONAL FACTORS
-Vk57diRnDFXevVNklyFWcjKElMk1,Matrices and Determinants,8,,,,,,,,,,,,,
-ZLrqeUPXTIg1AL2JGVLraTVKR2J2,CHEMICAL KINETICS,8,SOME BASIC CONCEPTS IN CHEMISTRY,11,CHEMICAL KINETICS,8,ATOMIC STRUCTURE,23,,,,,,,
-cN5j4TW8KsWLZuSZ0WB6eWdhrPm1,SOME BASIC CONCEPTS IN CHEMISTRY,31,CHEMICAL BONDING AND MOLECULAR STRUCTURE,25,SOME BASIC PRINCIPLES OF ORGANIC CHEMISTRY,20,,,,,,,,,
-k80sL0U5EoTBkehsoelmECj96R73,"Sets, Relation and Functions",5,ATOMIC STRUCTURE,30,Diffrential Equations,17,Permutations and Combinations,26,Permutations and Combinations,27,ORGANIC COMPOUNDS CONTAINING OXYGEN,23,Yes,6,
-lKLhPFboTzgyLf2tnRRkHzH5pGb2,PHYSICS AND MEASUREMENT,10,Permutations and Combinations,12,Diffrential Equations,18,Diffrential Equations,18,Diffrential Equations,-3,,,,,
-tcpzTzABpRhg1UdCLyYd9qyNEUm2,,,,,,,,,,,,,Yes,6,
-uhaHKci85DahTQptVzalLMPLb7v2,SOME BASIC CONCEPTS IN CHEMISTRY,-5,,,,,,,,,,,,,
-uxqM7U9z9hc7i4U3CF0LNcz0Bzi2,REDOX REACTIONS AND ELECTROCHEMISTRY,10,,,,,,,,,,,,,
-xuniMXYrIlQrIqzAgs9goewvQTo1,Diffrential Equations,31,,,,,,,,,,,,,
-yfjIYbmTdBha2kNS6izivtbAzMt1,,,,,,,,,,,,,,,BACKLOGS
-zF23RaPEGaV4Jci5FUJ14GeyWjD3,,,,,,,,,,,,,Yes,7,"""
-    
-    # Convert the string data to a DataFrame
-    df = pd.read_csv(io.StringIO(data), header=None)
+    # Replace this with the actual file path where your CSV file is stored
+    file_path = 'https://raw.githubusercontent.com/forittik/Student_collaboration_task1/refs/heads/main/merged_3dataset.csv'  # Change 'your_file_path_here.csv' to the actual path
+
+    # Load the data from the CSV file
+    df = pd.read_csv(file_path, header=None)
     
     # Assign column names dynamically based on the number of columns
     num_columns = len(df.columns)
