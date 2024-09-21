@@ -12,6 +12,12 @@ llm = ChatGroq(temperature=0, model_name="llama3-70b-8192", api_key=groq_api_key
 
 summary_prompt_single = PromptTemplate.from_template("""
 Here is the data for the student:
+The given structured data is complex, but the structure can be broken down as follows:
+1. Column 1: user_id – A unique identifier for each student.
+2. Columns 2 to 9: subject_scores – A dictionary of subject names as keys and the corresponding scores as values. Each student may have attempted multiple subjects or chapters, which are represented here. The columns alternate between subject names and their respective scores(Example: {‘Subject 1’: score1, ‘Subject 2’: score2, ..., ‘Subject N’: scoreN}, Missing or incomplete entries indicate that the student did not attempt that particular subject.)
+3. Column 10: productivity_yes_no – Indicates whether the student was considered productive (Yes/No).
+4. Column 11: productivity_rate – A numerical value representing the student's productivity level, typically ranging from 1 to 10.
+5. Column 12: emotional_factors – Provides information about any emotional factors that may have impacted the student’s performance, such as "EMOTIONAL FACTORS" or "BACKLOGS". This column helps highlight specific concerns affecting the student.(academic_panic_buttons = ["MISSED CLASSES", "BACKLOGS", "LACK OF MOTIVATION", "NOT UNDERSTANDING", "BAD MARKS"], non_academic_panic_buttons = ["EMOTIONAL FACTORS", "PROCRASTINATE", "LOST INTEREST", "LACK OF FOCUS", "GOALS NOT ACHIEVED", "LACK OF DISCIPLINE"])
 
 {context}
 
@@ -21,6 +27,12 @@ Also provide some specific suggestions on how the student can improve. Avoid gen
 
 summary_prompt_multiple = PromptTemplate.from_template("""
 Here is the data for the students:
+The given structured data is complex, but the structure can be broken down as follows:
+1. Column 1: user_id – A unique identifier for each student.
+2. Columns 2 to 9: subject_scores – A dictionary of subject names as keys and the corresponding scores as values. Each student may have attempted multiple subjects or chapters, which are represented here. The columns alternate between subject names and their respective scores(Example: {‘Subject 1’: score1, ‘Subject 2’: score2, ..., ‘Subject N’: scoreN}, Missing or incomplete entries indicate that the student did not attempt that particular subject.)
+3. Column 10: productivity_yes_no – Indicates whether the student was considered productive (Yes/No).
+4. Column 11: productivity_rate – A numerical value representing the student's productivity level, typically ranging from 1 to 10.
+5. Column 12: emotional_factors – Provides information about any emotional factors that may have impacted the student’s performance, such as "EMOTIONAL FACTORS" or "BACKLOGS". This column helps highlight specific concerns affecting the student.(academic_panic_buttons = ["MISSED CLASSES", "BACKLOGS", "LACK OF MOTIVATION", "NOT UNDERSTANDING", "BAD MARKS"], non_academic_panic_buttons = ["EMOTIONAL FACTORS", "PROCRASTINATE", "LOST INTEREST", "LACK OF FOCUS", "GOALS NOT ACHIEVED", "LACK OF DISCIPLINE"])
 
 {context}
 
@@ -31,7 +43,7 @@ Suggest ways they can learn from each other and address their challenges collabo
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("https://raw.githubusercontent.com/forittik/Student_collaboration_task1/refs/heads/main/TestFeatureChintamani.csv")
+    return pd.read_csv("/content/merged_3dataset.csv")
 
 def get_student_data(name, df):
     student_data = df[df.iloc[:, 0] == name]
