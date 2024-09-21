@@ -64,14 +64,21 @@ yfjIYbmTdBha2kNS6izivtbAzMt1,,,,,,,,,,,,,,,BACKLOGS
 zF23RaPEGaV4Jci5FUJ14GeyWjD3,,,,,,,,,,,,,Yes,7,"""
     
     # Convert the string data to a DataFrame
-    df = pd.read_csv(io.StringIO(data), header=None)  # Use io.StringIO instead of pd.compat.StringIO
+    df = pd.read_csv(io.StringIO(data), header=None)
     
-    # Assign column names
-    column_names = ['user_id'] + [f'subject_{i}' for i in range(1, 10)] + ['productivity_yes_no', 'productivity_rate', 'emotional_factors']
+    # Assign column names dynamically based on the number of columns
+    num_columns = len(df.columns)
+    column_names = ['user_id']
+    for i in range(1, num_columns - 3):  # -3 for the last three columns
+        if i % 2 == 1:
+            column_names.append(f'subject_{(i+1)//2}')
+        else:
+            column_names.append(f'score_{i//2}')
+    column_names.extend(['productivity_yes_no', 'productivity_rate', 'emotional_factors'])
+    
     df.columns = column_names
     
     return df
-
 def get_student_data(name, df):
     student_data = df[df['user_id'] == name]
     if student_data.empty:
