@@ -64,7 +64,7 @@ yfjIYbmTdBha2kNS6izivtbAzMt1,,,,,,,,,,,,,,,BACKLOGS
 zF23RaPEGaV4Jci5FUJ14GeyWjD3,,,,,,,,,,,,,Yes,7,"""
     
     # Convert the string data to a DataFrame
-    df = pd.read_csv(pd.compat.StringIO(data), header=None)
+    df = pd.read_csv(io.StringIO(data), header=None)  # Use io.StringIO instead of pd.compat.StringIO
     
     # Assign column names
     column_names = ['user_id'] + [f'subject_{i}' for i in range(1, 10)] + ['productivity_yes_no', 'productivity_rate', 'emotional_factors']
